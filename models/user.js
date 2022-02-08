@@ -9,9 +9,9 @@ const userSchema = new Schema({
     email: 
     { 
     type: String,
-    unique: 'Email already exists',
-    match: [/.+\@.+\..+/, 'Please fill a valid email address'],
-    required: 'Email is required'
+    // unique: 'Email already exists',
+    // match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+    required: true
     },
     password: 
     { 
@@ -33,4 +33,4 @@ const userSchema = new Schema({
 });
 
 //module.exports = 
-mongoose.model('User', userSchema);
+mongoose.model("User", userSchema);

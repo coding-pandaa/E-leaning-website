@@ -7,9 +7,6 @@ const jwt = require('jsonwebtoken')
 const {JWT_SECRET}= require('../keys')
 const requireLogin = require('../middleware/requireLogin')
 
-router.get('/protected',requireLogin,(req,res)=>{
-    res.send("Hello user")
-})
 
 router.post('/signup',(req,res)=>{
     const {name,email,password,role,gender} = req.body
@@ -45,7 +42,6 @@ router.post('/signup',(req,res)=>{
     })
 })
 
-
 router.post('/signin',(req,res)=>{
     const {email,password,role}= req.body
     if(!email || !password || !role)
@@ -63,7 +59,8 @@ router.post('/signin',(req,res)=>{
             {
                 //res.json({message: "Sucessfully signed in"})
                 const token = jwt.sign({_id: savedUser._id},JWT_SECRET)
-                res.json({token})
+                const{_id,email,password,role} = savedUser
+                res.json({token,user:{_id,email,password,role}})
             }
             else{
                 return res.status(422).json({error: "Invalid Email,password or role"})

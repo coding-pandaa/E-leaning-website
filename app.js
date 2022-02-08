@@ -23,6 +23,13 @@ mongoose.connection.on('error',()=>{
     console.log("err connecting",err)
 })
 
+require('./models/user')
+require('./models/course')
+
+app.use(express.json())
+app.use(require('./routes/auth'))
+app.use(require('./routes/course'))
+
 
 
 app.listen(PORT,()=>{

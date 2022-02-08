@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const {ObjectId}= mongoose.Schema.Types
 
 const EnrollmentSchema = new mongoose.Schema({
   course: {type: mongoose.Schema.ObjectId, ref: 'Course'},
@@ -14,4 +15,5 @@ const EnrollmentSchema = new mongoose.Schema({
   completed: Date
 })
 
-export default mongoose.model('Enrollment', EnrollmentSchema)
+//export default 
+mongoose.model('Enrollment', EnrollmentSchema)

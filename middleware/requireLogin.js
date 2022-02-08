@@ -3,7 +3,6 @@ const {JWT_SECRET}= require('../keys')
 const mongoose = require('mongoose')
 const User = mongoose.model("User")
 
-
 module.exports = (req,res,next)=>{
     const {authorization} = req.headers
     //authorization === Bearer dfkfjeuifhdn5554
@@ -19,7 +18,8 @@ module.exports = (req,res,next)=>{
         const {_id}=payload
         User.findById(_id).then(userdata=>{
             req.user = userdata
+            next()
         })
-        next()
+        
     })
 }
